@@ -1,0 +1,15 @@
+<!doctype html>
+<title>Frater Zymael</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>Frater Zymael</h1>
+  <div class=metanav>
+    ||
+    <a href="{{ url_for('home') }}">home</a>
+    ||
+    <a href="{{ url_for('tarot')}}">tarot</a>
+    ||
+  </div>
+
+  {% block body %}{% endblock %}
+</div>

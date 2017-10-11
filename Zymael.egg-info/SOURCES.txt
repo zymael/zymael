@@ -1,0 +1,8 @@
+MANIFEST.in
+Zymael.egg-info/PKG-INFO
+Zymael.egg-info/SOURCES.txt
+Zymael.egg-info/dependency_links.txt
+Zymael.egg-info/requires.txt
+Zymael.egg-info/top_level.txt
+zymael/__init__.py
+zymael/zymael.py

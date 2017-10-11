@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Three Card Draw</h2>
+  <div class = "content">
+  {% for x in card%}
+    {% if x.startswith("ace") or x.startswith("princess") or x.startswith("prince") or x.startswith("queen") or x.startswith("knight") or x.split(" ")[0].isdigit()%}
+      <a href = "http://www.corax.com/tarot/cards/index.html?{% print (x.split(" ")[2]+"-"+x.split(" ")[0]) %}"><img src ="static/cards/{%print x%}.jpg"></a>
+    {% else %}
+      <a href = "http://www.corax.com/tarot/cards/index.html?{% print x %}" target="_blank"><img src ="static/cards/{%print x%}.jpg"></a>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}
