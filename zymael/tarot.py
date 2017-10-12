@@ -34,6 +34,7 @@ def createDeck(type):
 def shuffle(deck):
     random.shuffle(deck)
     return deck
+
 def getCard(deck,amount):
     draw = []
     for x in range (0,amount):
