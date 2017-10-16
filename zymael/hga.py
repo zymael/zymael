@@ -47,16 +47,18 @@ def makeZodiac():
     	   zodiac.append(make_dict_from_row(x))
     return zodiac
 
-def getHebrew(zodiac,sign,degree):
+def getLetter(zodiac,sign,degree,language):
     for x in zodiac:
         if x['sign']==sign:
             if x['degree']==degree:
-                return x['hebrew']
+                print(x[language])
+                return x[language]
 
-def makeHebrewName(zodiac,signs):
+
+def makeName(zodiac,signs,language):
     nameList = []
     for x in signs:
-        nameList.append(getHebrew(zodiac,x[0],x[1]))
+        nameList.append(getLetter(zodiac,x[0],x[1],language))
     hganame = "ל‎א‎"
     for x in nameList:
         hganame = hganame+x

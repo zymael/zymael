@@ -2,15 +2,17 @@
 <title>Frater Zymael</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
-  <h1>Frater Zymael</h1>
+  <h1>Frater <font color="#F00">Zymael</font></h1>
   <div class=metanav>
-    ||
+
     <a href="{{ url_for('home') }}">home</a>
-    ||
+    |
     <a href="{{ url_for('tarot')}}">tarot</a>
-    ||
+    |
     <a href="{{ url_for('hga')}}">hga</a>
-    ||
+    |
+    <a href="{{ url_for('gematria')}}">gematria</a>
+    
   </div>
 
   {% block body %}{% endblock %}

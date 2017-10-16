@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <h2>Gematria</h2>
+{% if output != "null" %}
+
+<div class = "content">
+  <div class = "hebrew">{%print output[0]%}</div>
+  <h2>Value: {%print output[1]%}</h2>
+    <form action = "http://localhost:5000/gematriaresult" method = "POST">
+        <p><input type = "input" name ="input"/>
+          <p><input type = "submit" value = "Submit" /></p>
+    </form>
+</div>
+
+{% else %}
+
+<div class = "content">
+  <form action = "http://localhost:5000/gematriaresult" method = "POST">
+      <p><input type = "input" name ="input"/>
+        <p><input type = "submit" value = "Submit" /></p>
+  </form>
+</div>
+{% endif %}
+{% endblock %}

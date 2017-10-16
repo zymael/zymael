@@ -5,6 +5,9 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 from .tarot import *
 from .hga import *
+from .gematria import *
+from flatlib.datetime import Datetime
+from flatlib.geopos import GeoPos
 
 app = Flask(__name__) # create the application instance :)
 app.config.from_object(__name__) # load config from this file , flaskr.py
@@ -30,11 +33,37 @@ def tarot():
 
 @app.route('/hga')
 def hga():
-    DATE = Datetime('1989/06/17', '17:00', '+00:00')
-    POS = GeoPos('38n32', '8w54')
-    aspects = Aspects(DATE,POS)
-    zodiac = makeZodiac()
-    signs = [[aspects.syzygy['sign'],str(aspects.syzygy['degree'])],[aspects.moon['sign'],str(aspects.moon['degree'])],[aspects.sun['sign'],str(aspects.sun['degree'])]]
-    for x in signs:print(x)
-    hebrew = makeHebrewName(zodiac, signs)
-    return render_template("hga.html",output=hebrew)
+    return render_template("hga.html",output="null")
+
+@app.route('/hgaresult',methods = ['POST'])
+def hgaresult():
+    if request.method == 'POST':
+        result = request.form
+        print(result)
+        datelong = result['year']+"/"+result['month']+"/"+result['day']
+        hour = result['hour']
+        if result['ampm']=="PM": hour+=12
+        time = hour+":"+result['minute']
+        lat = result['latdegree']+result['lataxis']+result['latminute']
+        lon = result['londegree']+result['lonaxis']+result['lonminute']
+        DATE = Datetime(datelong, time, '+00:00')
+        POS = GeoPos(lat, lon)
+        aspects = Aspects(DATE,POS)
+        zodiac = makeZodiac()
+        signs = [[aspects.syzygy['sign'],str(aspects.syzygy['degree'])],[aspects.moon['sign'],str(aspects.moon['degree'])],[aspects.sun['sign'],str(aspects.sun['degree'])]]
+        hebrew = makeName(zodiac, signs, 'hebrew')
+        hebrewreverse = makeName(zodiac, signs, 'hebrewreverse')
+        return render_template("hga.html",output=[hebrew,hebrewreverse])
+
+@app.route('/gematria')
+def gematria():
+    return render_template('gematria.html',output="null")
+
+@app.route('/gematriaresult',methods = ['POST'])
+def gematriaresult():
+    if request.method == 'POST':
+        result = request.form
+        print(result)
+        word = result['input']
+        value = getValue(word)
+        return render_template("gematria.html",output=[word,value])
