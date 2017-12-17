@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
-  <h2>Three Card Draw</h2>
+<div class="w3-container" style="margin-top:80px" id="showcase">
+  <h1 class="w3-jumbo"><b>Tarot</b></h1>
+  <h1 class="w3-xxxlarge w3-text-red"><b>Three Card Draw</b></h1>
+</div>
   <div class = "content">
   {% for x in card%}
     {% if x.startswith("ace") or x.startswith("princess") or x.startswith("prince") or x.startswith("queen") or x.startswith("knight") or x.split(" ")[0].isdigit()%}

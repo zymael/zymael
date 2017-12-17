@@ -1,13 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
-
-  <h2>Holy Guardian Angel</h2>
+<div class="w3-container" style="margin-top:80px" id="showcase">
+  <h1 class="w3-jumbo"><b>Angel and Daemon Names</b></h1>
+  <center><i>Discovers the names of personal spirits based on the methods described by Heinrich Cornelius Agrippa</i></center>
+</div>
 {% if output != "null" %}
 
     <div class = "content">
-      <h3>Hebrew (Good Daimon)</h3>
+      <h3>Hebrew (Good Daemon/HGA)</h3>
       <div class ="hebrew">{% print output[0] %}</div>
-      <h3>Reverse Hebrew (Evil Daimon)</h3>
+      <h3>Reverse Hebrew (Evil Daemon/Personal Goetic Spirit)</h3>
       <div class ="hebrew">{% print output[1] %}</div>
   </div>
 
